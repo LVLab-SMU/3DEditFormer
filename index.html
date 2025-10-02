@@ -1,0 +1,72 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Towards Scalable and Consistent 3D Editing</title>
+        <link rel="stylesheet" href="fonts/avenir-next/stylesheet.css">
+        <link rel="stylesheet" href="fonts/segoe-print/stylesheet.css">
+        <link rel="stylesheet" href="icons/style.css">
+        <link rel="stylesheet" href="css/window.css">
+        <link rel="stylesheet" href="css/carousel.css">
+        <link rel="stylesheet" href="css/selection_panel.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/window.js"></script>
+        <script src="js/carousel.js"></script>
+        <script src="js/selection_panel.js"></script>
+        <script src="js/generation.js"></script>
+        <script src="js/editing.js"></script>
+        <script src="js/application.js"></script>
+		<script src="js/main.js"></script>
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="title" class="x-gradient-font">
+                <span style="font-size: 80px;">Towards Scalable and Consistent 3D Editing</span>
+            </div>
+            <div id="authors">
+                <div><a class="link" href="https://xiarho.github.io">Ruihao Xia</a><sup>1</sup></div>
+                <div><a class="link" href="http://www.ytangecust.com/">Yang Tang</a><sup>1</sup></div>
+                <div><a class="link" href="https://panzhous.github.io">Pan Zhou</a><sup>2</sup></div>
+            </div>
+            <div id="institution">
+                <div><sup>1</sup><a class="link" href="https://www.ecust.edu.cn/">East China University of Science and Technology</a></div>
+                <div><sup>2</sup><a class="link" href="https://www.smu.edu.sg/">Singapore Management University</a></div>
+            </div>
+            <div id="links">
+                <div><a id="paper" href="#">Paper</a></div>
+                <div><a id="arxiv" href="#">Arxiv</a></div>
+                <div><a id="code" href="https://github.com/LVLab-SMU/3DEditFormer">Code</a></div>
+            </div>
+            <div class="x-center-text" style="font-size: 20px; font-weight: 500; color: #3f3f3f;">
+                <b>TL;DR:</b> We introduce <i><b>3DEditVerse</b></i>, the largest paired 3D editing benchmark, and propose <i><b>3DEditFormer</b></i>, a mask-free transformer enabling precise, consistent, and scalable 3D edits.
+            </div>
+            <div id="abstract" class="x-gradient-block">
+                3D editing—the task of locally modifying the geometry or appearance of a 3D asset—has wide applications in immersive content creation, digital entertainment, and AR/VR. However, unlike 2D editing, it remains challenging due to the need for cross-view consistency, structural fidelity, and fine-grained controllability. Existing approaches are often slow, prone to geometric distortions, or dependent on manual and accurate 3D masks that are error-prone and impractical.  To address these challenges, we advance both the data and model fronts. On the data side, we introduce <strong>3DEditVerse</strong>, the largest paired 3D editing benchmark to date, comprising 116,309 high-quality training pairs and 1,500 curated test pairs. Built through complementary pipelines of pose-driven geometric edits, foundation model-guided appearance edits, and human validation, 3DEditVerse ensures edit locality, multi-view consistency, and semantic alignment.  On the model side, we propose <strong>3DEditFormer</strong>, a 3D-structure-preserving conditional transformer. By enhancing image-to-3D generation with dual-guidance attention and time-adaptive gating, 3DEditFormer disentangles editable regions from preserved structure, enabling precise and consistent edits without requiring auxiliary 3D masks.  Extensive experiments demonstrate that our framework outperforms state-of-the-art baselines both quantitatively and qualitatively, establishing a new standard for practical and scalable 3D editing. Dataset and code will be released.
+            </div>
+
+            <div class="x-section-title"><div class="x-gradient-font">3DEditVerse Dataset</div></div>
+            <div id="teaser">
+                <div style="width: 100%;"><video autoplay playsinline loop muted src="assets_glb/test_all.mp4"></video></div>
+            </div>
+            <p class="x-note">
+                <i>* Generative Data from Text-Guided Editing are shown in the video.</i>
+            </p>
+            <p class="x-note">
+                <i>Our <strong>3DEditVerse</strong>, the largest paired 3D editing benchmark to date, comprising 116,309 high-quality training pairs and 1,500 curated test pairs. Built through complementary pipelines of pose-driven geometric edits, foundation model-guided appearance edits, and human validation, 3DEditVerse ensures edit locality, multi-view consistency, and semantic alignment.</i>
+            </p>
+
+            <div class="x-section-title"><div class="x-gradient-font">3DEditFormer <span style="font-size: 40px; font-weight:600;">|</span> Comparison with SoTA VoxHammer</div></div>
+            <p>Click on the cards to view extracted GLB files.</p>
+            <div id="results-edit2"></div>
+            <p class="x-note">
+                <i>Our <strong>3DEditFormer</strong>, a 3D-structure-preserving conditional transformer. By enhancing image-to-3D generation with dual-guidance attention and time-adaptive gating, 3DEditFormer disentangles editable regions from preserved structure, enabling precise and consistent edits <strong>without requiring auxiliary 3D masks</strong>.</i>
+            </p>
+            
+            <p >
+                The website template is borrowed from <a href="https://github.com/microsoft/TRELLIS/tree/website">TRELLIS</a>.
+            </p>
+        </div>
+        
+    </body>
+</html>
