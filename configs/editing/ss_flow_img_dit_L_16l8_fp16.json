@@ -1,0 +1,90 @@
+{
+    "models": {
+        "denoiser": {
+            "name": "EditingSparseStructureFlowModel",
+            "args": {
+                "resolution": 16,
+                "in_channels": 8,
+                "out_channels": 8,
+                "model_channels": 1024,
+                "cond_channels": 1024,
+                "num_blocks": 24,
+                "num_heads": 16,
+                "mlp_ratio": 4,
+                "patch_size": 1,
+                "pe_mode": "ape",
+                "qk_rms_norm": true,
+                "use_fp16": true,
+                "attention_block_type_str": "EditingModulatedTransformerCrossBlockV2",
+                "ori_ss_latents_weights": 0,
+                "feats_3d_t": [0.05, 1.0],
+                "replace_ori_ss_latents_with_noise": false
+            }
+        }
+    },
+    "dataset": {
+        "name": "EditingImageConditionedSparseStructureLatent",
+        "args": {
+            "json_file": "",
+            "dataset_num": 15000,
+            "latent_model": "ss_enc_conv3d_16l8_fp16",
+            "min_aesthetic_score": 4.5,
+            "image_size": 518,
+            "pretrained_ss_dec": "microsoft/TRELLIS-image-large/ckpts/ss_dec_conv3d_16l8_fp16",
+            "mixamo_root_path": "/path_to_3DEditVerse/mixamo",
+            "flux_edit_root_path": "/path_to_3DEditVerse/flux_edit",
+            "alpaca_root_path": "/path_to_3DEditVerse/alpaca",
+            "dataset_info_path": "/path_to_3DEditVerse/dataset_info.json",
+            "load_data_type": "ss_latents",
+            "alpaca_confidence_json_path": "/path_to_3DEditVerse/alpaca_confidence.json",
+            "flux_edit_confidence_json_path": "/path_to_3DEditVerse/flux_edit_confidence.json",
+            "filter_info": {
+                "avg_con_sim_feat_dim": [0.8, 1.0]
+            },
+            "flux_edit_alpaca_test_json_path": "/path_to_3DEditVerse/test_data_info.json",
+            "mixamo_test_animation": ["Michelle", "Castle Guard 01"]
+        }
+    },
+    "trainer": {
+        "name": "EditingImageConditionedFlowMatchingCFGTrainer",
+        "args": {
+            "max_steps": 40000,
+            "batch_size_per_gpu": 4,
+            "batch_split": 1,
+            "optimizer": {
+                "name": "AdamW",
+                "args": {
+                    "lr": 0.0001,
+                    "weight_decay": 0.0
+                }
+            },
+            "ema_rate": [
+                0.9999
+            ],
+            "fp16_mode": "inflat_all",
+            "fp16_scale_growth": 0.001,
+            "grad_clip": {
+                "name": "AdaptiveGradClipper",
+                "args": {
+                    "max_norm": 1.0,
+                    "clip_percentile": 95
+                }
+            },
+            "i_print": 100,
+            "i_log": 100,
+            "i_sample": 4000,
+            "i_save": 10000,
+            "p_uncond": 0.0,
+            "t_schedule": {
+                "name": "logitNormal",
+                "args": {
+                    "mean": 1.0,
+                    "std": 1.0
+                }
+            },
+            "sigma_min": 1e-5,
+            "image_cond_model": "dinov2_vitl14_reg",
+            "finetune_ckpt": "~/.cache/huggingface/hub/models--microsoft--TRELLIS-image-large/snapshots/25e0d31ffbebe4b5a97464dd851910efc3002d96/ckpts/ss_flow_img_dit_L_16l8_fp16.safetensors"
+        }
+    }
+}
