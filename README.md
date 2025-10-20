@@ -35,12 +35,48 @@ Please refer to their installation instructions for dependency versions and CUDA
 
 ## :nut_and_bolt: Preparing the Datasets
 
-Download our 3DEditVerse dataset: https://huggingface.co/datasets/XiaRho/3DEditVerse. About 227 GB (636,569 files).
+1. Download our 3DEditVerse dataset: [3DEditVerse](https://huggingface.co/datasets/XiaRho/3DEditVerse/tree/main). About 227 GB (636,569 files).
 
+2. Extract the `*.tar` files in the `3DEditVerse` folder.
+```
+tar -xf alpaca.tar / mixamo.tar / test_data.tar
+```
+* For `flux_edit.part.tar.*` files, you should concatenate them into a single file before extracting.
+```
+cat flux_edit.part.tar.* > flux_edit.tar
+```
+
+3. The data folder structure should look like this:
+```
+path_to_3DEditVerse/3DEditVerse
+├── alpaca
+│   ├── 1
+│   ├── 2
+│   ├── ...
+├── flux_edit
+│   ├── 3D CG rendering_4
+│   ├── 3D CG rendering_5
+│   ├── ...
+├── mixamo
+│   ├── latents
+│   ├── renders_cond
+│   ├── ss_latents
+├── test_data
+│   ├── alpaca
+│   ├── alpaca_render
+│   ├── flux_edit
+│   ├── flux_edit_render
+│   ├── mixamo
+│   ├── mixamo_render
+├── alpaca_confidence.json
+├── flux_edit_confidence.json
+├── dataset_info.json
+├── test_data_info.json
+```
 
 ## :arrow_forward: Inference and Evaluation with our Trained 3DEditFormer
 
-1. Download the trained model of [3DEditFormer](https://huggingface.co/XiaRho/3DEditFormer) and put them in the `./work_dirs/Editing_Training` folder. Then, you can inference on the testing data in 3DEditVerse:
+1. Download the trained model of [3DEditFormer](https://huggingface.co/XiaRho/3DEditFormer/tree/main) and put them in the `./work_dirs/Editing_Training` folder. Then, you can inference on the testing data in 3DEditVerse:
 ```
 CUDA_VISIBLE_DEVICES=0 python eval_3d_editing.py --cuda_idx 0 --world_size 1 --rank 0 --dataset_root_dir /path_to_3DEditVerse/3DEditVerse --blender_path /path_to_blender/blender-4.4.3-linux-x64/blender --ss_latents_load_id img_to_voxel --latents_load_id voxel_to_texture --save_name 3DEditFormer --output_mesh --output_video --print_time
 ```
