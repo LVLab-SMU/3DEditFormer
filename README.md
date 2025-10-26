@@ -72,6 +72,7 @@ path_to_3DEditVerse/3DEditVerse
 ├── flux_edit_confidence.json
 ├── dataset_info.json
 ├── test_data_info.json
+├── edit_prompts.json
 ```
 
 ## :arrow_forward: Inference and Evaluation with our Trained 3DEditFormer
