@@ -1,4 +1,4 @@
-# Towards Scalable and Consistent 3D Editing
+# Towards Scalable and Consistent 3D Editing (2026_ICML)
 
 <div align="center">
 <a href="https://arxiv.org/abs/2510.02994"><img src='https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv&logoColor=white' alt='arXiv'></a>
@@ -6,9 +6,6 @@
 <a href='https://huggingface.co/XiaRho/3DEditFormer'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue'></a>
 <a href='https://huggingface.co/datasets/XiaRho/3DEditVerse'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue'></a>
 </div>
-
-
-*👋 Hi, I’m **Ruihao Xia**, a Ph.D. candidate (expected 2026). I’m seeking internship and full-time opportunities in **AIGC**, **3D vision**, and **multimodal intelligence**. More about me and my CV: [https://xiarho.github.io/](https://xiarho.github.io/) — feel free to reach out if my background aligns with your team!*
 
 In this paper, we introduce **3DEditVerse**, the largest paired 3D editing benchmark, and propose **3DEditFormer**, a mask-free transformer enabling precise, consistent, and scalable 3D edits.
 
